@@ -23,6 +23,7 @@ JPY・CNY・USD・EURを相互換算し、送料・手数料・関税概算を�
 - [消費税計算機](https://github.com/igentrade/igentrade-shohizei) — https://igentrade.github.io/igentrade-shohizei/
 - [為替・概算コスト](https://github.com/igentrade/igentrade-kawase) — https://igentrade.github.io/igentrade-kawase/
 - [営業日計算機](https://github.com/igentrade/igentrade-eigyobi) — https://igentrade.github.io/igentrade-eigyobi/
+- [簡易出納帳](https://github.com/igentrade/igentrade-suitoubo) — https://igentrade.github.io/igentrade-suitoubo/
 
 ## ライセンス
 
