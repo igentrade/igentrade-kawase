@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>為替換算・概算コスト計算機 | iGenTrade（合同会社威源国際貿易） | https://www.igentrade.com/</title>
+  <meta name="description" content="合同会社威源国際貿易（iGenTrade）の貿易向け為替換算・送料・手数料・関税概算計算機。">
+  <meta name="keywords" content="合同会社威源国際貿易, iGenTrade, https://www.igentrade.com/, 為替換算, 貿易, 関税, 送料, CNY, USD, EUR, JPY">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar no-print"><div class="brand"><strong>iGenTrade</strong><span>為替換算・概算コスト計算機</span></div><p class="tagline">合同会社威源国際貿易（iGenTrade）｜https://www.igentrade.com/｜貿易向け概算</p></header>
+  <main class="layout">
+    <aside class="panel no-print">
+      <h2>換算条件</h2>
+      <label>商品金額
+        <input id="amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="例: 1000">
+      </label>
+      <div class="rate-grid">
+        <label>元通貨<select id="fromCurrency"><option>JPY</option><option selected>CNY</option><option>USD</option><option>EUR</option></select></label>
+        <label>計算通貨<select id="toCurrency"><option selected>JPY</option><option>CNY</option><option>USD</option><option>EUR</option></select></label>
+      </div>
+      <h3>手動レート（1通貨 = 円）</h3>
+      <div class="rate-grid">
+        <label>JPY<input id="rateJPY" type="number" min="0.000001" step="0.000001" value="1"></label>
+        <label>CNY<input id="rateCNY" type="number" min="0.000001" step="0.000001" value="20.5"></label>
+        <label>USD<input id="rateUSD" type="number" min="0.000001" step="0.000001" value="150"></label>
+        <label>EUR<input id="rateEUR" type="number" min="0.000001" step="0.000001" value="165"></label>
+      </div>
+      <button type="button" id="fetchRates" class="btn secondary">最新レートを取得</button>
+      <p id="rateStatus" class="status">手動レートを使用中。取得時はFrankfurter APIを参照します。</p>
+      <h3>追加コスト（計算通貨）</h3>
+      <label>送料<input id="shipping" type="number" min="0" step="0.01" value="0"></label>
+      <div class="rate-grid">
+        <label>手数料方式<select id="feeMode"><option value="percent">商品金額の%</option><option value="fixed">固定額</option></select></label>
+        <label>手数料<input id="fee" type="number" min="0" step="0.01" value="0"></label>
+      </div>
+      <label>関税概算（商品金額に対する%）<input id="duty" type="number" min="0" step="0.01" value="0"></label>
+      <label class="toggle-brand"><input id="showBrand" type="checkbox"> 書類フッターに提供元を表示（通常はオフ推奨）</label>
+      <div class="actions"><button type="button" id="saveLocal" class="btn secondary">下書き保存</button><button type="button" id="loadLocal" class="btn secondary">下書き読込</button><button type="button" id="printBtn" class="btn primary">印刷 / PDF</button></div>
+      <p class="hint">最新レート取得に失敗した場合は、入力済みの手動レートで計算します。為替・関税の最終判断には利用しないでください。</p>
+    </aside>
+    <section class="preview-wrap"><article class="sheet" id="sheet">
+      <div class="sheet-head"><div><p class="doc-label">概算コスト計算</p><p class="doc-sub">Trade cost estimate</p></div><div class="meta"><p><span>換算日</span> <strong id="today">—</strong></p><p><span>換算</span> <strong id="pair">—</strong></p></div></div>
+      <div class="calc-result"><div class="result-grid"><div class="result-card"><span>商品金額</span><strong id="baseResult">¥0</strong></div><div class="result-card"><span>追加コスト</span><strong id="extraResult">¥0</strong></div><div class="result-card"><span>概算総額</span><strong id="totalResult">¥0</strong></div></div><p class="calc-note" id="rateNote">レートを入力してください。</p></div>
+      <table class="items-table"><tbody><tr><th>商品金額（計算通貨）</th><td id="detailBase">—</td></tr><tr><th>送料</th><td id="detailShipping">—</td></tr><tr><th>手数料</th><td id="detailFee">—</td></tr><tr><th>関税概算</th><td id="detailDuty">—</td></tr><tr><th>適用レート</th><td id="detailRate">—</td></tr></tbody></table>
+      <p class="calc-note">※「概算総額」は商品金額を換算した計算通貨に、送料・手数料・関税概算を加えた目安です。</p>
+      <footer class="sheet-foot brand-foot is-hidden" id="brandFoot"><p>本ツールは <strong>合同会社威源国際貿易（iGenTrade）</strong> が提供しています。</p><p class="url">公式サイト: https://www.igentrade.com/</p></footer>
+    </article></section>
+  </main>
+  <footer class="site-foot no-print"><p>© 合同会社威源国際貿易（iGenTrade）— iGenTrade 貿易向け無料ツール</p><p><a href="https://www.igentrade.com/" target="_blank" rel="noopener">https://www.igentrade.com/</a></p></footer>
+  <script src="app.js"></script>
+</body>
+</html>
