@@ -15,12 +15,14 @@ JPY・CNY・USD・EURを相互換算し、送料・手数料・関税概算を�
 
 取得に失敗した場合は手動レートをそのまま使用します。為替・関税・通関費用の確定値ではないため、見積や発注の最終判断前に必ず確認してください。
 
-## 関連ツール
 
-- [igentrade-seikyu](../igentrade-seikyu/)（見積書・請求書）
-- [igentrade-nohin-ryoshu](../igentrade-nohin-ryoshu/)（納品書・領収書）
-- [igentrade-shohizei](../igentrade-shohizei/)（消費税計算）
-- [igentrade-eigyobi](../igentrade-eigyobi/)（営業日計算）
+## 関連ツール（iGenTrade 無料）
+
+- [見積書・請求書](https://github.com/igentrade/igentrade-seikyu) — https://igentrade.github.io/igentrade-seikyu/
+- [納品書・領収書](https://github.com/igentrade/igentrade-nohin-ryoshu) — https://igentrade.github.io/igentrade-nohin-ryoshu/
+- [消費税計算機](https://github.com/igentrade/igentrade-shohizei) — https://igentrade.github.io/igentrade-shohizei/
+- [為替・概算コスト](https://github.com/igentrade/igentrade-kawase) — https://igentrade.github.io/igentrade-kawase/
+- [営業日計算機](https://github.com/igentrade/igentrade-eigyobi) — https://igentrade.github.io/igentrade-eigyobi/
 
 ## ライセンス
 
