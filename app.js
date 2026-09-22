@@ -18,7 +18,9 @@
   function syncBrand() { $("brandFoot").classList.toggle("is-hidden", !$("showBrand").checked); }
   function allInputs() { return ["amount", "fromCurrency", "toCurrency", "shipping", "feeMode", "fee", "duty", ...currencies.map((c) => "rate" + c)]; }
   function load(d) { $("amount").value = d.amount ?? ""; $("fromCurrency").value = d.from || "CNY"; $("toCurrency").value = d.to || "JPY"; currencies.forEach((c) => { $("rate" + c).value = d.rates?.[c] ?? (c === "JPY" ? 1 : ""); }); $("shipping").value = d.shipping ?? 0; $("feeMode").value = d.feeMode || "percent"; $("fee").value = d.fee ?? 0; $("duty").value = d.duty ?? 0; calculate(); }
-  allInputs().forEach((id) => $(id).addEventListener("input", calculate));
+  let statsReady = false;
+  function markTry() { if (statsReady && typeof window.iGenTradeRecordTry === "function") window.iGenTradeRecordTry(); }
+  allInputs().forEach((id) => $(id).addEventListener("input", () => { markTry(); calculate(); }));
   $("fetchRates").addEventListener("click", async () => {
     const button = $("fetchRates"); button.disabled = true; $("rateStatus").className = "status"; $("rateStatus").textContent = "最新レートを取得しています…";
     try {
@@ -28,8 +30,8 @@
       $("rateJPY").value = 1; $("rateStatus").className = "status ok"; $("rateStatus").textContent = `取得日時: ${json.date || "最新"}（計算には表示レートを使用）`; calculate();
     } catch (_) { $("rateStatus").className = "status error"; $("rateStatus").textContent = "取得できませんでした。手動レートで計算を続けます。"; } finally { button.disabled = false; }
   });
-  $("showBrand").addEventListener("change", syncBrand); $("printBtn").addEventListener("click", () => window.print());
+  $("showBrand").addEventListener("change", syncBrand); $("printBtn").addEventListener("click", () => { markTry(); window.print(); });
   $("saveLocal").addEventListener("click", () => { localStorage.setItem(KEY, JSON.stringify(read())); alert("下書きをこのブラウザに保存しました。"); });
   $("loadLocal").addEventListener("click", () => { const raw = localStorage.getItem(KEY); if (!raw) return alert("保存された下書きがありません。"); try { load(JSON.parse(raw)); } catch (_) { alert("下書きを読み込めませんでした。"); } });
-  calculate(); syncBrand();
+  calculate(); syncBrand(); statsReady = true;
 })();
